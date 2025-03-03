@@ -12,7 +12,9 @@ Covered many corner cases, but there may be more lurking in the dark.  If find a
 Sample pii-scrubbing:
 
 ##################################################
+
 Original text:
+
 Subject: Payment Confirmation for Invoice INV-2023-0456
 Dear Accounts Payable Team,
  I am writing to confirm the payment for the building maintenance services provided under invoice INV-2023-0456 at the University's Engineering Complex.
@@ -30,6 +32,7 @@ Dear Accounts Payable Team,
 #################
 
 Scrubbed text:
+
 Subject: Payment Confirmation for Invoice INV-[NUM_0[NUM_27]]-[NUM_02]
 Dear Accounts Payable Team,
  I am writing to confirm the payment for the building maintenance services provided under invoice INV-[NUM_03]-[NUM_04] at the University's Engineering Complex.
