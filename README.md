@@ -21,14 +21,14 @@ To: Accounts Payable Team
 From: Dr. Emily Carter (emily.carter@university.edu)
 Date: 2023-10-02
 
-1. Invoice & Transaction Details
+Invoice & Transaction Details
 Invoice Number: INV-2023-0456
 Invoice Date: 2023-09-30
 Purchase Order #: PO-8814-2023
 Total Amount: $27,450.00
 Payment Due: 2023-10-15
 
-2. Vendor Information
+Vendor Information
 Vendor Name: ABC Facilities Management
 Contact Name: Robert Smith
 Contact Email: robert.smith@abcfacilities.com
@@ -40,7 +40,7 @@ Vendor Tax ID (EIN): 12-3456789
 Vendor Bank Account: 987654320123
 Vendor Routing Number: 123456780
 
-3. University Contact
+University Contact
 Representative: Dr. Emily Carter
 University Email: emily.carter@university.edu
 Work Phone: (555) 321-7890
@@ -52,7 +52,7 @@ Office Address:
 789 Campus Avenue, Building 5, Room 204
 Springfield, IL 62703
 
-4. Payment & Financial Information
+Payment & Financial Information
 Primary Credit Card: 4111-1111-1111-1111 (Exp: 11/28, CVV: 123)
 Secondary Credit Card: 5500-0000-0000-0004 (Exp: 08/26, CVV: 321)
 Bank Account Number: 987654321012
@@ -61,7 +61,7 @@ SWIFT Code: ABCDUS33
 IBAN: US12 3456 7890 1234 5678 90
 Check Number: 102345
 
-5. Technical & Security Details
+Technical & Security Details
 User Login: ecarter
 Password: SecurePass123
 Temporary Password:
@@ -72,7 +72,7 @@ MAC Address: AA:BB:CC:DD:EE:FF
 VPN Login: emilycarter@srv-university (pass: Pa$$word987)
 Official Social Media: @UniversityOfficial
 
-6. Additional PII for Testing Robustness
+Additional PII for Testing Robustness
 Passport Number: 981234567
 Driver’s License: S123-4567-8901-2345 (IL)
 License Plate: SPR-4567
@@ -84,7 +84,7 @@ Name: Mark Carter
 Phone: (555) 789-1234
 Relation: Spouse
 
-7. Internal Notes (For Processing Only)
+Internal Notes (For Processing Only)
 Robert Smith authorized payment via email (see attached .eml)
 Dr. Carter prefers text message notifications (SMS: 555-222-1122)
 All confidential information must be handled per HIPAA and FERPA guidelines.
