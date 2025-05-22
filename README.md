@@ -12,7 +12,7 @@ Covered many corner cases, but there may be more lurking in the dark.  If find a
 Sample pii-scrubbing:
 
 ##################################################
-
+```
 Original text:
 
 Subject: Payment & Contract Confirmation – Invoice INV-2023-0456
@@ -21,14 +21,14 @@ To: Accounts Payable Team
 From: Dr. Emily Carter (emily.carter@university.edu)
 Date: 2023-10-02
 
-Invoice & Transaction Details
+1. Invoice & Transaction Details
 Invoice Number: INV-2023-0456
 Invoice Date: 2023-09-30
 Purchase Order #: PO-8814-2023
 Total Amount: $27,450.00
 Payment Due: 2023-10-15
 
-Vendor Information
+2. Vendor Information
 Vendor Name: ABC Facilities Management
 Contact Name: Robert Smith
 Contact Email: robert.smith@abcfacilities.com
@@ -40,7 +40,7 @@ Vendor Tax ID (EIN): 12-3456789
 Vendor Bank Account: 987654320123
 Vendor Routing Number: 123456780
 
-University Contact
+3. University Contact
 Representative: Dr. Emily Carter
 University Email: emily.carter@university.edu
 Work Phone: (555) 321-7890
@@ -52,7 +52,7 @@ Office Address:
 789 Campus Avenue, Building 5, Room 204
 Springfield, IL 62703
 
-Payment & Financial Information
+4. Payment & Financial Information
 Primary Credit Card: 4111-1111-1111-1111 (Exp: 11/28, CVV: 123)
 Secondary Credit Card: 5500-0000-0000-0004 (Exp: 08/26, CVV: 321)
 Bank Account Number: 987654321012
@@ -61,7 +61,7 @@ SWIFT Code: ABCDUS33
 IBAN: US12 3456 7890 1234 5678 90
 Check Number: 102345
 
-Technical & Security Details
+5. Technical & Security Details
 User Login: ecarter
 Password: SecurePass123
 Temporary Password:
@@ -72,7 +72,7 @@ MAC Address: AA:BB:CC:DD:EE:FF
 VPN Login: emilycarter@srv-university (pass: Pa$$word987)
 Official Social Media: @UniversityOfficial
 
-Additional PII for Testing Robustness
+6. Additional PII for Testing Robustness
 Passport Number: 981234567
 Driver’s License: S123-4567-8901-2345 (IL)
 License Plate: SPR-4567
@@ -84,12 +84,12 @@ Name: Mark Carter
 Phone: (555) 789-1234
 Relation: Spouse
 
-Internal Notes (For Processing Only)
+7. Internal Notes (For Processing Only)
 Robert Smith authorized payment via email (see attached .eml)
 Dr. Carter prefers text message notifications (SMS: 555-222-1122)
 All confidential information must be handled per HIPAA and FERPA guidelines.
 
-Test password with blank line after
+# Test password with blank line after
 Password:
 
 SuperSecretShouldNotBeScrubbed
@@ -177,7 +177,7 @@ Relation: Spouse
 Dr. [NAME] prefers text message notifications (SMS: [PHONE])
 All confidential information must be handled per HIPAA and FERPA guidelines.
 
-Test password with blank line after
+# Test password with blank line after
 Password: [PASSWORD]
 
 If you require any further documentation or have questions regarding this invoice, please contact:
@@ -186,3 +186,4 @@ Dr. [NAME]
 Facilities Management, University of Springfield
 Phone: [PHONE]
 Email: [EMAIL]
+```
