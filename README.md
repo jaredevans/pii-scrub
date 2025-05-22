@@ -69,7 +69,7 @@ Temp#2023$Pay!
 IP Address: 192.168.1.100
 Alternate IP: 10.0.0.15
 MAC Address: AA:BB:CC:DD:EE:FF
-VPN Login: emilycarter@srv-university (pass: Pa$$word987)
+VPN Login: emilycarter@srv-university (pass: Pa$word987)
 Official Social Media: @UniversityOfficial
 
 6. Additional PII for Testing Robustness
@@ -92,7 +92,7 @@ All confidential information must be handled per HIPAA and FERPA guidelines.
 # Test password with blank line after
 Password:
 
-SuperSecretShouldBeScrubbed
+SuperSecretShouldNotBeScrubbed
 
 If you require any further documentation or have questions regarding this invoice, please contact:
 
@@ -106,16 +106,16 @@ Email: emily.carter@university.edu
 
 Scrubbed text:
 
-Subject: Payment & Contract Confirmation – Invoice INV-[DIGITS]-[DIGITS]
+Subject: Payment & Contract Confirmation – Invoice [REDACTED]
 
 To: Accounts Payable Team
 From: Dr. [NAME] ([EMAIL])
 Date: [DATE]
 
 [DIGITS]. Invoice & Transaction Details
-Invoice Number: INV-[DIGITS]-[DIGITS]
+Invoice Number: [REDACTED]
 Invoice Date: [DATE]
-Purchase Order #: PO-[DIGITS]-[DIGITS]
+Purchase Order #: [REDACTED]
 Total Amount: [MONEY]
 Payment Due: [DATE]
 
@@ -157,13 +157,13 @@ Temporary Password: [PASSWORD]
 IP Address: [IP]
 Alternate IP: [IP]
 MAC Address: [MAC]
-VPN Login: emily[NAME]@srv-university (pass: Pa$$[DIGITS])
+VPN Login: emily[NAME]@srv-university (pass: [REDACTED]
 Official Social Media: [SM]
 
 [DIGITS]. Additional PII for Testing Robustness
 Passport Number: [DIGITS]
-Driver’s License: [DIGITS]-[DIGITS]-[DIGITS]-[DIGITS] (IL)
-License Plate: SPR-[DIGITS]
+Driver’s License: [REDACTED] (IL)
+License Plate: [REDACTED]
 Student ID: [DIGITS]
 Personal Email: [EMAIL]
 Home Address: [ADDRESS]
