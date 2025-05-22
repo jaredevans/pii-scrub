@@ -89,7 +89,7 @@ Robert Smith authorized payment via email (see attached .eml)
 Dr. Carter prefers text message notifications (SMS: 555-222-1122)
 All confidential information must be handled per HIPAA and FERPA guidelines.
 
-# Test password with blank line after
+Test password with blank line after
 Password:
 
 SuperSecretShouldNotBeScrubbed
@@ -177,7 +177,7 @@ Relation: Spouse
 Dr. [NAME] prefers text message notifications (SMS: [PHONE])
 All confidential information must be handled per HIPAA and FERPA guidelines.
 
-# Test password with blank line after
+Test password with blank line after
 Password: [PASSWORD]
 
 If you require any further documentation or have questions regarding this invoice, please contact:
