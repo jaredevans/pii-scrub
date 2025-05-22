@@ -14,12 +14,13 @@ Sample pii-scrubbing:
 ##################################################
 
 Original text:
+
 Subject: Payment & Contract Confirmation – Invoice INV-2023-0456
 
-To: Accounts Payable Team                                                                                               
+To: Accounts Payable Team
 From: Dr. Emily Carter (emily.carter@university.edu)
 Date: 2023-10-02
-                                                                                                                        
+
 1. Invoice & Transaction Details
 Invoice Number: INV-2023-0456
 Invoice Date: 2023-09-30
@@ -39,7 +40,7 @@ Vendor Tax ID (EIN): 12-3456789
 Vendor Bank Account: 987654320123
 Vendor Routing Number: 123456780
 
-4. University Contact
+3. University Contact
 Representative: Dr. Emily Carter
 University Email: emily.carter@university.edu
 Work Phone: (555) 321-7890
@@ -51,7 +52,7 @@ Office Address:
 789 Campus Avenue, Building 5, Room 204
 Springfield, IL 62703
 
-5. Payment & Financial Information
+4. Payment & Financial Information
 Primary Credit Card: 4111-1111-1111-1111 (Exp: 11/28, CVV: 123)
 Secondary Credit Card: 5500-0000-0000-0004 (Exp: 08/26, CVV: 321)
 Bank Account Number: 987654321012
@@ -60,17 +61,18 @@ SWIFT Code: ABCDUS33
 IBAN: US12 3456 7890 1234 5678 90
 Check Number: 102345
 
-6. Technical & Security Details
+5. Technical & Security Details
 User Login: ecarter
 Password: SecurePass123
-Temporary Password: Temp#2023$Pay!
+Temporary Password:
+Temp#2023$Pay!
 IP Address: 192.168.1.100
 Alternate IP: 10.0.0.15
 MAC Address: AA:BB:CC:DD:EE:FF
 VPN Login: emilycarter@srv-university (pass: Pa$$word987)
 Official Social Media: @UniversityOfficial
 
-7. Additional PII for Testing Robustness
+6. Additional PII for Testing Robustness
 Passport Number: 981234567
 Driver’s License: S123-4567-8901-2345 (IL)
 License Plate: SPR-4567
@@ -82,10 +84,15 @@ Name: Mark Carter
 Phone: (555) 789-1234
 Relation: Spouse
 
-8. Internal Notes (For Processing Only)
+7. Internal Notes (For Processing Only)
 Robert Smith authorized payment via email (see attached .eml)
 Dr. Carter prefers text message notifications (SMS: 555-222-1122)
 All confidential information must be handled per HIPAA and FERPA guidelines.
+
+# Test password with blank line after
+Password:
+
+SuperSecretShouldNotBeScrubbed
 
 If you require any further documentation or have questions regarding this invoice, please contact:
 
@@ -95,86 +102,87 @@ Phone: (555) 321-7890
 Email: emily.carter@university.edu
 
 
-
-#################
+###########
 
 Scrubbed text:
-Subject: Payment & Contract Confirmation – Invoice INV-[NUM_0[NUM_0[NUM_18]]]-[NUM_0[NUM_[NUM_[NUM_29]]]]
+
+Subject: Payment & Contract Confirmation – Invoice INV-[DIGITS]-[DIGITS]
 
 To: Accounts Payable Team
-From: Dr. [NAME_10] ([EMAIL_01])
-Date: [DATE_01]
+From: Dr. [NAME] ([EMAIL])
+Date: [DATE]
 
-1. Invoice & Transaction Details
-Invoice Number: INV-[NUM_0[NUM_23]]-[NUM_0[NUM_20]]
-Invoice Date: [DATE_02]
-Purchase Order #: PO-[NUM_0[NUM_46]]-[NUM_0[NUM_53]]
-Total Amount: $[NUM_[NUM_3[NUM_45]]],[NUM_09].[NUM_10]
-Payment Due: [DATE_03]
+[DIGITS]. Invoice & Transaction Details
+Invoice Number: INV-[DIGITS]-[DIGITS]
+Invoice Date: [DATE]
+Purchase Order #: PO-[DIGITS]-[DIGITS]
+Total Amount: [MONEY]
+Payment Due: [DATE]
 
-2. Vendor Information
+[DIGITS]. Vendor Information
 Vendor Name: ABC Facilities Management
-Contact Name: [NAME_09]
-Contact Email: [EMAIL_02]
-Contact Phone: [PHONE_01]
+Contact Name: [NAME]
+Contact Email: [EMAIL]
+Contact Phone: [PHONE]
 Vendor Address:
-[NUM_[NUM_15]] Industrial Road, Suite [NUM_13]
-Springfield, IL [NUM_14]
-Vendor Tax ID (EIN): 12-[NUM_16]
-Vendor Bank Account: [NUM_17]
-Vendor Routing Number: [SSN_01]
+[ADDRESS]
+Vendor Tax ID (EIN): [DIGITS]-[DIGITS]
+Vendor Bank Account: [DIGITS]
+Vendor Routing Number: [DIGITS]
 
-3. University Contact
-Representative: Dr. [NAME_08]
-University [NAME_07]: [EMAIL_03]
-Work Phone: [PHONE_02]
-Mobile Phone: [PHONE_03]
-Employee ID: UC[NUM_30]456
-Date of Birth: [DATE_04]
-Social Security Number: [SSN_02]
+[DIGITS]. University Contact
+Representative: Dr. [NAME]
+University Email: [EMAIL]
+Work Phone: [PHONE]
+Mobile Phone: [PHONE]
+Employee ID: [DIGITS]
+Date of Birth: [DATE]
+Social Security Number: [SSN]
 Office Address:
-[NUM_19] Campus Avenue, Building 5, Room [NUM_21]
-Springfield, IL [NUM_22]
+[ADDRESS]
 
-4. Payment & Financial Information
-Primary Credit Card: [NUM_24]-[NUM_25]-[NUM_[NUM_36]]-[NUM_27] (Exp: 11/28, CVV: 123)
-Secondary Credit Card: [NUM_31]-[NUM_32]-[NUM_33]-[NUM_34] (Exp: 08/26, CVV: [NUM_37])
-Bank Account Number: [NUM_38]
-Routing Number: [SSN_03]
-SWIFT Code: [SWIFT_01]
-IBAN: US12 [NUM_39] [NUM_40] [NUM_41] [NUM_42] [NUM_43]
-Check Number: [NUM_44]
+[DIGITS]. Payment & Financial Information
+Primary Credit Card: [CREDIT_CARD] (Exp: [DATE], CVV: [DIGITS])
+Secondary Credit Card: [CREDIT_CARD] (Exp: [DATE], CVV: [DIGITS])
+Bank Account Number: [DIGITS]
+Routing Number: [DIGITS]
+SWIFT Code: [DIGITS]
+IBAN: [DIGITS] [CREDIT_CARD] [DIGITS]
+Check Number: [DIGITS]
 
-5. Technical & Security Details
-User Login: ecarter
-[NAME_06]: SecurePass123
-Temporary Password: [PASSWORD_01]
-IP Address: [IP_01]
-Alternate IP: [IP_02]
-MAC Address: [MAC_01]
-VPN Login: emilycarter[SOCIAL_01]-university (pass: Pa$$word987)
-Official Social Media: [SOCIAL_02]
+[DIGITS]. Technical & Security Details
+User Login: e[NAME]
+Password: [PASSWORD]
+Temporary Password: [PASSWORD]
+IP Address: [IP]
+Alternate IP: [IP]
+MAC Address: [MAC]
+VPN Login: emily[NAME]@srv-university (pass: Pa$$[DIGITS])
+Official Social Media: [SM]
 
-6. Additional PII for Testing Robustness
-Passport Number: [SSN_04]
-Driver’s License: S123-[NUM_47]-[NUM_48]-[NUM_49] (IL)
-License Plate: SPR-[NUM_50]
-Student ID: S20231234
-Personal Email: [EMAIL_04]
-Home Address: [NUM_51] [NAME_05], Springfield, IL [NUM_52]
+[DIGITS]. Additional PII for Testing Robustness
+Passport Number: [DIGITS]
+Driver’s License: [DIGITS]-[DIGITS]-[DIGITS]-[DIGITS] (IL)
+License Plate: SPR-[DIGITS]
+Student ID: [DIGITS]
+Personal Email: [EMAIL]
+Home Address: [ADDRESS]
 Emergency Contact:
-Name: [NAME_04]
-Phone: [PHONE_04]
+Name: [NAME]
+Phone: [PHONE]
 Relation: Spouse
 
-7. Internal Notes (For Processing Only)
-[NAME_03] authorized payment via email (see attached .eml)
-Dr. [NAME_02] prefers text message notifications (SMS: [PHONE_05])
+[DIGITS]. Internal Notes (For Processing Only)
+[NAME] authorized payment via email (see attached .eml)
+Dr. [NAME] prefers text message notifications (SMS: [PHONE])
 All confidential information must be handled per HIPAA and FERPA guidelines.
+
+# Test password with blank line after
+Password: [PASSWORD]
 
 If you require any further documentation or have questions regarding this invoice, please contact:
 
-Dr. [NAME_01]
+Dr. [NAME]
 Facilities Management, University of Springfield
-Phone: [PHONE_06]
-Email: [EMAIL_05]
+Phone: [PHONE]
+Email: [EMAIL]
