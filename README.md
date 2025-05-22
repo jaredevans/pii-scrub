@@ -92,7 +92,7 @@ All confidential information must be handled per HIPAA and FERPA guidelines.
 # Test password with blank line after
 Password:
 
-SuperSecretShouldNotBeScrubbed
+SuperSecretShouldBeScrubbed
 
 If you require any further documentation or have questions regarding this invoice, please contact:
 
