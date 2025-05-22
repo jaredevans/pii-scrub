@@ -19,8 +19,9 @@ from scrub import scrub_text
     ("Mobile: 555-123-4567", "Mobile: [PHONE]"),
     # Email
     ("Email me at john.doe@gmail.com", "Email me at [EMAIL]"),
-    # Social Media Handle
+    # Social Media Handle (with and without space)
     ("Follow us @CoolCompany", "Follow us [SM]"),
+    ("Find us at  @CoolCompany", "Find us at  [SM]"),
     # Money
     ("Amount: $27,450.00", "Amount: [MONEY]"),
     # IP Address
@@ -34,12 +35,23 @@ from scrub import scrub_text
     ("Password: Hunter2", "Password: [PASSWORD]"),
     # Password Next Line
     ("Password:\nLetMeIn", "Password: [PASSWORD]"),
+    # Password w/ blank line after (should NOT scrub blank)
+    ("Password:\n\nSuperSecret", "Password: [PASSWORD]"),
     # Names
     ("Contact: Robert Smith", "Contact: [NAME]"),
     ("Contact: Dr. Emily Carter", "Contact: Dr. [NAME]"),
-    # Alphanumeric words with letters and digits
+    # Alphanumeric words with letters and digits (no symbols)
     ("Username: UC123456", "Username: [DIGITS]"),
     ("Student ID: S20231234", "Student ID: [DIGITS]"),
+    ("Field: abc123", "Field: [DIGITS]"),
+    # Alphanumeric + symbol ([REDACTED])
+    ("VPN Login: pa$word987", "VPN Login: [REDACTED]"),
+    ("Token: Abc123!", "Token: [REDACTED]"),
+    ("Someword: Hello1!", "Someword: [REDACTED]"),
+    ("Mix123word", "[DIGITS]"),  # Just digits+letters, no symbol
+    ("!!abc", "!!abc"),            # Only symbol
+    ("word!", "word!"),            # Only symbol
+    ("word123", "[DIGITS]"),        # Only digits+letters, should get [DIGITS]
     # All remaining digit sequences
     ("Routing Number: 123456789", "Routing Number: [DIGITS]"),
 ])

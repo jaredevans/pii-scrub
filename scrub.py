@@ -45,7 +45,6 @@ EMAIL_PATTERN = re.compile(r'\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b'
 # Social media handles (words starting with @)
 SOCIAL_MEDIA_PATTERN = re.compile(r'(^|\s)@[A-Za-z0-9_]+\b')
 
-
 # Monetary value
 MONEY_PATTERN = re.compile(r'\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?|\$\d+')
 
@@ -68,9 +67,6 @@ CREDIT_CARD_PATTERN = re.compile(
     r')(?!\d)'
 )
 
-# Long digit sequences (8+)
-DIGIT_SEQUENCE_PATTERN = re.compile(r'\b\d{8,}\b')
-
 # Password patterns
 PASSWORD_INLINE_PATTERN = re.compile(
     r'(?i)(Password|Passcode|Pwd|Temporary Password|Temp Password|Temp Pwd|Temp Pass)\s*[:=]\s*([^\n]+)'
@@ -79,10 +75,17 @@ PASSWORD_NEXTLINE_PATTERN = re.compile(
     r'(?i)(Password|Passcode|Pwd|Temporary Password|Temp Password|Temp Pwd|Temp Pass)\s*[:=]?\s*\n([^\n]+)'
 )
 
-# Alphanumeric words containing both letters and digits
+# Mixture of alpha + digit + symbol (non-alphanumeric, non-underscore)
+MIXED_WORD_PATTERN = re.compile(
+    r'(?=[^\s]*[A-Za-z])(?=[^\s]*\d)(?=[^\s]*[^A-Za-z0-9\s])\S+'
+)
+
+
+
+# Alphanumeric words containing both letters and digits (no symbols)
 ALNUM_MIXED_PATTERN = re.compile(r'\b(?=\w*[A-Za-z])(?=\w*\d)\w+\b')
 
-# All digit sequences (used at the end)
+# All digit sequences
 ALL_DIGITS_PATTERN = re.compile(r'\b\d+\b')
 
 def password_inline_replacer(match):
@@ -92,20 +95,19 @@ def password_nextline_replacer(match):
     return f"{match.group(1)}:\n[PASSWORD]"
 
 def is_inside_token(text, start, end):
-    """Check if a span is already inside a [TOKEN] like [EMAIL], [ADDRESS], etc."""
     before = text[max(0, start-1):start]
     after = text[end:end+1]
     return before == "[" and after == "]"
 
 def scrub_text(text):
-    # 0. Password (inline, e.g. Password: value)
+    # 0. Password (inline)
     text = PASSWORD_INLINE_PATTERN.sub(password_inline_replacer, text)
-    # 0.5 Password (next line, e.g. Password:\nvalue)
+    # 0.5 Password (next line)
     text = PASSWORD_NEXTLINE_PATTERN.sub(password_nextline_replacer, text)
-    # 1. Street Address (multiline first)
+    # 1. Street Address
     for addr_re in ADDRESS_PATTERNS:
         text = addr_re.sub('[ADDRESS]', text)
-    # 2. Date (all formats)
+    # 2. Date
     for date_re in DATE_PATTERNS:
         text = date_re.sub('[DATE]', text)
     # 3. SSN
@@ -116,8 +118,7 @@ def scrub_text(text):
     text = EMAIL_PATTERN.sub('[EMAIL]', text)
     # 5.5 Social media handles
     text = SOCIAL_MEDIA_PATTERN.sub(lambda m: f"{m.group(1)}[SM]", text)
-
-    # 6. Monetary value
+    # 6. Money
     def money_replacer(match):
         start, end = match.span()
         if is_inside_token(text, start, end):
@@ -150,9 +151,9 @@ def scrub_text(text):
     names = sorted(set(ent.text for ent in doc.ents if ent.label_ == "PERSON"), key=len, reverse=True)
     for name in names:
         if name.strip().lower() == "password":
-            continue  # Don't replace the word "password"
+            continue
         if name.strip().lower() == "email":
-            continue  # Don't replace the word "email"
+            continue
         pattern = re.compile(re.escape(name), re.IGNORECASE)
         matches = list(pattern.finditer(text))
         new_text = []
@@ -165,9 +166,11 @@ def scrub_text(text):
                 last_idx = end
         new_text.append(text[last_idx:])
         text = ''.join(new_text)
-    # 12. Scrub all alphanumeric words with both letters and digits
+    # 12. Scrub all words with letter, digit, and symbol
+    text = MIXED_WORD_PATTERN.sub('[REDACTED]', text)
+    # 13. Scrub all alphanumeric words with both letters and digits (no symbols)
     text = ALNUM_MIXED_PATTERN.sub('[DIGITS]', text)
-    # 13. Scrub ALL remaining digit sequences
+    # 14. Scrub ALL remaining digit sequences
     text = ALL_DIGITS_PATTERN.sub('[DIGITS]', text)
     return text
 
@@ -226,7 +229,7 @@ Temp#2023$Pay!
 IP Address: 192.168.1.100
 Alternate IP: 10.0.0.15
 MAC Address: AA:BB:CC:DD:EE:FF
-VPN Login: emilycarter@srv-university (pass: Pa$$word987)
+VPN Login: emilycarter@srv-university (pass: Pa$word987)
 Official Social Media: @UniversityOfficial
 
 6. Additional PII for Testing Robustness
